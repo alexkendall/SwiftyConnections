@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		789C554E75F136C5ED34E3E9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 82AB05AC026333B6F4CC2F79 /* libPods.a */; };
 		FA1D1E8A1CC7B500006ED3EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1D1E891CC7B500006ED3EF /* AppDelegate.swift */; };
 		FA1D1E8C1CC7B500006ED3EF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1D1E8B1CC7B500006ED3EF /* ViewController.swift */; };
 		FA1D1E8F1CC7B500006ED3EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1D1E8D1CC7B500006ED3EF /* Main.storyboard */; };
@@ -14,6 +15,8 @@
 		FA1D1E941CC7B500006ED3EF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1D1E921CC7B500006ED3EF /* LaunchScreen.storyboard */; };
 		FA1D1E9F1CC7B500006ED3EF /* SwiftyConnectionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1D1E9E1CC7B500006ED3EF /* SwiftyConnectionsTests.swift */; };
 		FA1D1EAA1CC7B500006ED3EF /* SwiftyConnectionsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1D1EA91CC7B500006ED3EF /* SwiftyConnectionsUITests.swift */; };
+		FA1D1EBB1CC7B8C1006ED3EF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1D1EBA1CC7B8C1006ED3EF /* NetworkManager.swift */; };
+		FA1D1ECB1CC7BBB2006ED3EF /* NetworkMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1D1ECA1CC7BBB2006ED3EF /* NetworkMode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		48F127043B6C08DF736D4FA1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		82AB05AC026333B6F4CC2F79 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD9DE6C9F10DB1F71B625094 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FA1D1E861CC7B500006ED3EF /* SwiftyConnections.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyConnections.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1D1E891CC7B500006ED3EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA1D1E8B1CC7B500006ED3EF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +53,9 @@
 		FA1D1EA51CC7B500006ED3EF /* SwiftyConnectionsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyConnectionsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1D1EA91CC7B500006ED3EF /* SwiftyConnectionsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyConnectionsUITests.swift; sourceTree = "<group>"; };
 		FA1D1EAB1CC7B500006ED3EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA1D1EB71CC7B7E1006ED3EF /* SwiftyConnections-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwiftyConnections-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		FA1D1EBA1CC7B8C1006ED3EF /* NetworkManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		FA1D1ECA1CC7BBB2006ED3EF /* NetworkMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				789C554E75F136C5ED34E3E9 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +84,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		061FDD9737FEB8359322777B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				48F127043B6C08DF736D4FA1 /* Pods.debug.xcconfig */,
+				BD9DE6C9F10DB1F71B625094 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		68919BA825476F88AEDB17DE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				82AB05AC026333B6F4CC2F79 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FA1D1E7D1CC7B4FF006ED3EF = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +108,8 @@
 				FA1D1E9D1CC7B500006ED3EF /* SwiftyConnectionsTests */,
 				FA1D1EA81CC7B500006ED3EF /* SwiftyConnectionsUITests */,
 				FA1D1E871CC7B500006ED3EF /* Products */,
+				061FDD9737FEB8359322777B /* Pods */,
+				68919BA825476F88AEDB17DE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,10 +128,13 @@
 			children = (
 				FA1D1E891CC7B500006ED3EF /* AppDelegate.swift */,
 				FA1D1E8B1CC7B500006ED3EF /* ViewController.swift */,
+				FA1D1EBA1CC7B8C1006ED3EF /* NetworkManager.swift */,
+				FA1D1ECA1CC7BBB2006ED3EF /* NetworkMode.swift */,
 				FA1D1E8D1CC7B500006ED3EF /* Main.storyboard */,
 				FA1D1E901CC7B500006ED3EF /* Assets.xcassets */,
 				FA1D1E921CC7B500006ED3EF /* LaunchScreen.storyboard */,
 				FA1D1E951CC7B500006ED3EF /* Info.plist */,
+				FA1D1EB71CC7B7E1006ED3EF /* SwiftyConnections-Bridging-Header.h */,
 			);
 			path = SwiftyConnections;
 			sourceTree = "<group>";
@@ -132,9 +164,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FA1D1EAE1CC7B500006ED3EF /* Build configuration list for PBXNativeTarget "SwiftyConnections" */;
 			buildPhases = (
+				D89E41A3D21F3DC9056D398D /* Check Pods Manifest.lock */,
 				FA1D1E821CC7B500006ED3EF /* Sources */,
 				FA1D1E831CC7B500006ED3EF /* Frameworks */,
 				FA1D1E841CC7B500006ED3EF /* Resources */,
+				10C1E76CD9C08253CBEA5467 /* Embed Pods Frameworks */,
+				13AEBFA99C50E0396C25EA0B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -251,13 +286,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		10C1E76CD9C08253CBEA5467 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		13AEBFA99C50E0396C25EA0B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D89E41A3D21F3DC9056D398D /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FA1D1E821CC7B500006ED3EF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA1D1EBB1CC7B8C1006ED3EF /* NetworkManager.swift in Sources */,
 				FA1D1E8C1CC7B500006ED3EF /* ViewController.swift in Sources */,
 				FA1D1E8A1CC7B500006ED3EF /* AppDelegate.swift in Sources */,
+				FA1D1ECB1CC7BBB2006ED3EF /* NetworkMode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,25 +484,32 @@
 		};
 		FA1D1EAF1CC7B500006ED3EF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48F127043B6C08DF736D4FA1 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SwiftyConnections/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = alexkendall.SwiftyConnections;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftyConnections-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		FA1D1EB01CC7B500006ED3EF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BD9DE6C9F10DB1F71B625094 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = SwiftyConnections/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = alexkendall.SwiftyConnections;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftyConnections-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -486,6 +578,7 @@
 				FA1D1EB01CC7B500006ED3EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA1D1EB11CC7B500006ED3EF /* Build configuration list for PBXNativeTarget "SwiftyConnectionsTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +587,7 @@
 				FA1D1EB31CC7B500006ED3EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA1D1EB41CC7B500006ED3EF /* Build configuration list for PBXNativeTarget "SwiftyConnectionsUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +596,7 @@
 				FA1D1EB61CC7B500006ED3EF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
