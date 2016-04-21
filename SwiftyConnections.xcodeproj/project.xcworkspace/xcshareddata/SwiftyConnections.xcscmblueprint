@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8A72F4EB67D983BB7ABB5170A2406EF9CC5A345D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "4CA53D06DCD80C79B690645E396372112DDA0422" : 0,
+    "8A72F4EB67D983BB7ABB5170A2406EF9CC5A345D" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "70C604A8-BA35-4036-9897-561F8E97FFC0",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "4CA53D06DCD80C79B690645E396372112DDA0422" : "underdark-cocoa\/",
+    "8A72F4EB67D983BB7ABB5170A2406EF9CC5A345D" : "SwiftyConnections\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "SwiftyConnections",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "SwiftyConnections.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/alexkendall\/underdark-cocoa.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4CA53D06DCD80C79B690645E396372112DDA0422"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/alexkendall\/SwiftyConnections.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8A72F4EB67D983BB7ABB5170A2406EF9CC5A345D"
+    }
+  ]
+}

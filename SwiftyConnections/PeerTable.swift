@@ -2,6 +2,8 @@ import Foundation
 import UIKit
 import MultipeerConnectivity
 import ReactiveCocoa
+import enum Result.NoError
+public typealias NoError = Result.NoError
 
 class PeerTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     let users: MutableProperty<[User]?> = MutableProperty(nil)
@@ -67,6 +69,7 @@ class PeerTable: UITableView, UITableViewDataSource, UITableViewDelegate {
                 cell.connectButton.setTitleColor(.lightGrayColor(), forState: .Normal)
             }
         }
+        cell.userIDLabel.text = users.value![indexPath.row].id
         cell.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         return cell
     }

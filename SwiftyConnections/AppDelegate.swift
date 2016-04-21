@@ -1,21 +1,17 @@
-//
-//  AppDelegate.swift
-//  SwiftyConnections
-//
-//  Created by Alexander Harrison on 4/20/16.
-//  Copyright © 2016 Alexander Harrison. All rights reserved.
-//
-
 import UIKit
 
+let tabController = UITabBarController()
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        window?.rootViewController = tabController
+        let connectTab = UITabBarItem(title: "Connect", image: UIImage(named: "connect"), tag: 0)
+        tabController.viewControllers = [PeerController.sharedPeerController, ChatController.sharedChatController]
+        PeerController.sharedPeerController.tabBarItem = connectTab
         return true
     }
 
