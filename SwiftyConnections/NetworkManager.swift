@@ -250,7 +250,7 @@ public class NetworkManager: NSObject, UDTransportDelegate {
         }
     }
     private func removeLink(link: UDLink) {
-        for var i = 0; i < links.count; i += 1{
+        for i in 0..<links.count {
             if link.nodeId == links[i].nodeId {
                 links.removeAtIndex(i)
             }
