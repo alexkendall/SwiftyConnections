@@ -9,10 +9,15 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>SwiftyNetworkManager.xcscheme</key>
+		<key>SwiftyConnectivity.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
+		</dict>
+		<key>SwiftyNetworkManager.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -33,6 +38,36 @@
 			<true/>
 		</dict>
 		<key>FA1D1EBF1CC7B934006ED3EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA1D21211CC7CDB2006ED3EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA1D212A1CC7CDB3006ED3EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA1D21451CC7CE62006ED3EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA1D214E1CC7CE62006ED3EF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA5C4D911CC809F90026DB7E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA5C4D9A1CC809F90026DB7E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

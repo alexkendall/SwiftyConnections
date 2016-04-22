@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 var globalMainQueue: dispatch_queue_t {
     return dispatch_get_main_queue()

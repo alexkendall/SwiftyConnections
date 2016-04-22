@@ -48,6 +48,36 @@
                ReferencedContainer = "container:SwiftyConnections.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FA1D212A1CC7CDB3006ED3EF"
+               BuildableName = "SwiftyConnectivityTests.xctest"
+               BlueprintName = "SwiftyConnectivityTests"
+               ReferencedContainer = "container:SwiftyConnections.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FA1D214E1CC7CE62006ED3EF"
+               BuildableName = "SwiftyConnectivityTests.xctest"
+               BlueprintName = "SwiftyConnectivityTests"
+               ReferencedContainer = "container:SwiftyConnections.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FA5C4D9A1CC809F90026DB7E"
+               BuildableName = "SwiftyConnectivityTests.xctest"
+               BlueprintName = "SwiftyConnectivityTests"
+               ReferencedContainer = "container:SwiftyConnections.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
