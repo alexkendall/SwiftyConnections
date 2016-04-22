@@ -21,6 +21,11 @@ public class NetworkManager: NSObject, UDTransportDelegate {
     var mode: NetworkMode!
     static var sharedManager = NetworkManager(inMode: .Offline)
     public var delegate: NetworkManagerDelegate!
+    
+    
+    // browse advertise logic tracking
+    private let isBrowsing: MutableProperty<Bool> = MutableProperty(false)
+    private let isAdvertising: MutableProperty<Bool> = MutableProperty(false)
     required public init(inMode: NetworkMode) {
         super.init()
         mode = inMode
@@ -29,11 +34,12 @@ public class NetworkManager: NSObject, UDTransportDelegate {
             .observeNext {userList in
                 var hostList = [User]()
                 for user in userList {
-                    if self.mode == .Client {
-                        if user.mode == .Host || user.connected {
+                    user.printInfo()
+                    if self.mode == .Browser || self.mode == .AdvertiserBrowser {
+                        if user.mode == .Advertiser || user.mode == .AdvertiserBrowser {
                             hostList.append(user)
                         }
-                    } else if self.mode == .Host {
+                    } else if self.mode == .Advertiser {
                         if user.connected {
                             hostList.append(user)
                         }
@@ -43,12 +49,12 @@ public class NetworkManager: NSObject, UDTransportDelegate {
                     self.connectedPeers.value = hostList
                 }
         }
-        if mode == .Client {
-            brwose()
-        } else if mode == .Host {
+        if mode == .Browser {
+            browse()
+        } else if mode == .Advertiser {
             advertise()
-        } else {
-            enterSingleUser()
+        } else if mode == .AdvertiserBrowser {
+            advertiseBrowse()
         }
         initTransport()
         connectedPeers.signal
@@ -60,34 +66,51 @@ public class NetworkManager: NSObject, UDTransportDelegate {
                 }
             })
     }
-    
-    func advertise() {
-        disconnectFromPeers()
-        usersInRange.value = []
-        connectedPeers.value = []
-        mode = .Host
-        broadcastType()
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(NetworkManager.broadcastType), userInfo: nil, repeats: true)  // start advertising
+    // MARK: Broweer/Advertise Functions
+    public func advertise() {
+        isAdvertising.value = true
+        if isBrowsing.value {
+            advertiseBrowse()
+        } else {
+            disconnectFromPeers()
+            usersInRange.value = []
+            connectedPeers.value = []
+            mode = .Advertiser
+            broadcastType()
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(NetworkManager.broadcastType), userInfo: nil, repeats: true)  // start advertising
+        }
     }
-    func brwose() {
-        disconnectFromPeers()
-        usersInRange.value = []
-        connectedPeers.value = []
+    public func browse() {
+        isBrowsing.value = true
+        if isAdvertising.value {
+            advertiseBrowse()
+        } else {
+            disconnectFromPeers()
+            usersInRange.value = []
+            connectedPeers.value = []
+            timer.invalidate()
+            mode = .Browser
+            broadcastType()
+            timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(NetworkManager.broadcastType), userInfo: nil, repeats: true)  // start advertising
+        }
+    }
+    private func advertiseBrowse() {
         timer.invalidate()
-        mode = .Client
+        print("advertise and browse")
+        mode = .AdvertiserBrowser
         broadcastType()
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(NetworkManager.broadcastType), userInfo: nil, repeats: true)  // start advertising
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(NetworkManager.broadcastType), userInfo: nil, repeats: true)
     }
-    func enterSingleUser() {
+    public func enterSingleUser() {
         disconnectFromPeers()
         usersInRange.value = []
         connectedPeers.value = []
         timer.invalidate()
         mode = .Offline
         broadcastType()
-        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(NetworkManager.broadcastType), userInfo: nil, repeats: true)  // start advertising
+        timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(NetworkManager.broadcastType), userInfo: nil, repeats: true)
     }
-    func initTransport() {
+    private func initTransport() {
         stopTransport()
         var buf: Int64 = 0
         repeat {
@@ -103,62 +126,68 @@ public class NetworkManager: NSObject, UDTransportDelegate {
         transport.start()
         print("starting transport")
     }
-    // MARK: Delegate
+    // MARK: Transport Delegate
     public func transport(transport: UDTransport!, link: UDLink!, didReceiveFrame frameData: NSData!) {
-        if mode == .Client || mode == .Host {
+        if mode == .Browser || mode == .Advertiser {
             let message = String(data: frameData, encoding: NSUTF8StringEncoding) ?? ""
             lastIncommingMessage.value = message
-            if message.containsString("host_") {
+            if message.containsString("advertiserbrowser") {
                 let id = getUserIDFromMessage(message)
                 let displayName = getDisplayNameFromMessage(message)
-                addUser(User(userId: id, userlink: link, userMode: .Host, isConnected: false, inName: displayName))
-            } else if message.containsString("client_") {
+                addUser(User(userId: id, userlink: link, userMode: .AdvertiserBrowser, isConnected: false, inName: displayName))
+            } else if message.containsString("advertiser_") {
                 let id = getUserIDFromMessage(message)
                 let displayName = getDisplayNameFromMessage(message)
-                addUser(User(userId: id, userlink: link, userMode: .Client, isConnected: false, inName: displayName))
+                addUser(User(userId: id, userlink: link, userMode: .Advertiser, isConnected: false, inName: displayName))
+            } else if message.containsString("browser_") {
+                let id = getUserIDFromMessage(message)
+                let displayName = getDisplayNameFromMessage(message)
+                addUser(User(userId: id, userlink: link, userMode: .Browser, isConnected: false, inName: displayName))
             } else if message.containsString("connectionrequest_") {
                 let name = getDisplayNameFromMessage(message)
                 let userId = getUserIDFromMessage(message)
-                let user = User(userId: userId, userlink: link, userMode: NetworkMode.Client, isConnected: false, inName: name)
+                var mode: NetworkMode!
+                if message.containsString("advetiserbrowser") {
+                    mode = .AdvertiserBrowser
+                } else {
+                    mode = .Browser
+                }
+                let user = User(userId: userId, userlink: link, userMode: mode, isConnected: false, inName: name)
                 if delegate != nil {
                     delegate.recievedConnectionRequestFromUser(user, autheticateHandler: self.authenticateUser)
                 }
             } else if message.containsString("allow_") {
                 let userId = getUserIDFromMessage(message)
                 let name = getDisplayNameFromMessage(message)
-                let user = User(userId: userId, userlink: link, userMode: NetworkMode.Host, isConnected: true, inName: name)
+                if message.containsString("advetiserbrowser") {
+                    mode = .AdvertiserBrowser
+                } else {
+                    mode = .Browser
+                }
+                let user = User(userId: userId, userlink: link, userMode: mode, isConnected: false, inName: name)
+                self.addUser(user)
                 // notify other use this user has connected to the other
                 if delegate != nil {
                     delegate.didConnectToUser(user)
                 }
-                self.addUser(user)
                 self.notifyConnected(user)
             } else if message.containsString("connected_") {
                 let userId = getUserIDFromMessage(message)
                 let name = getDisplayNameFromMessage(message)
-                let user = User(userId: userId, userlink: link, userMode: NetworkMode.Client, isConnected: true, inName: name)
+                if message.containsString("advetiserbrowser") {
+                    mode = .AdvertiserBrowser
+                } else {
+                    mode = .Browser
+                }
+                let user = User(userId: userId, userlink: link, userMode: mode, isConnected: false, inName: name)
+                self.addUser(user)
                 if delegate != nil {
                     delegate.didConnectToUser(user)
                 }
-                self.addUser(user)
-            } else if message.containsString("booted_") {
-                let userId = getUserIDFromMessage(message)
-                let name = getDisplayNameFromMessage(message)
-                let user = User(userId: userId, userlink: link, userMode: NetworkMode.Client, isConnected: true, inName: name)
-                self.removeUser(user)
-                let alertController = UIAlertController()
-                alertController.title = "Disconnected"
-                alertController.message = "\(name) removed you from the queue."
-                let declineAction = UIAlertAction(title: "Exit", style: UIAlertActionStyle.Cancel, handler: nil)
-                alertController.addAction(declineAction)
-            } else if message.containsString("disconnect_") {
-                let userId = getUserIDFromMessage(message)
-                let name = getDisplayNameFromMessage(message)
-                let user = User(userId: userId, userlink: link, userMode: NetworkMode.Client, isConnected: true, inName: name)
-                self.removeUser(user)
             } else {
                 delegate.didRecieveMessage(message)
             }
+            print("message: \(message)")
         }
     }
     public func transport(transport: UDTransport!, linkConnected link: UDLink!) {
@@ -223,6 +252,10 @@ public class NetworkManager: NSObject, UDTransportDelegate {
         }
     }
     private func addUser(user: User) {
+        print("should add user)")
+        user.printInfo()
+        
+        /*
         if user.id != deviceId {
             dispatch_async(dispatch_get_main_queue(), {
                 if !self.usersInRangeExist() {
@@ -230,7 +263,7 @@ public class NetworkManager: NSObject, UDTransportDelegate {
                 }
                 for i in 0..<self.usersInRange.value!.count {
                     if user.id == self.usersInRange.value![i].id {
-                        if !self.usersInRange.value![i].connected && user.connected || (self.usersInRange.value![i].mode == .Client && user.mode == .Host) || (self.usersInRange.value![i].mode == .Host && user.mode == .Client) {
+                        if !self.usersInRange.value![i].connected && user.connected || (self.usersInRange.value![i].mode == .Browser && user.mode == .Advertiser) || (self.usersInRange.value![i].mode == .Advertiser && user.mode == .Browser) {
                             self.usersInRange.value?.removeAtIndex(i)
                             self.usersInRange.value?.append(user)
                             return
@@ -248,6 +281,7 @@ public class NetworkManager: NSObject, UDTransportDelegate {
         } else {
             print("Detected Self over network")
         }
+        */
     }
     private func removeLink(link: UDLink) {
         for i in 0..<links.count {
@@ -283,12 +317,12 @@ public class NetworkManager: NSObject, UDTransportDelegate {
     }
     public func authenticateUser(user: User, autheticate: Bool) {
         if autheticate {
-            let data = ("allow_\(deviceId)_\(self.displayName)").dataUsingEncoding(NSUTF8StringEncoding) ?? NSData()
+            let data = ("\(user.mode.rawValue)allow_\(deviceId)_\(self.displayName)").dataUsingEncoding(NSUTF8StringEncoding) ?? NSData()
             user.link.sendFrame(data)
         }
     }
     private func notifyConnected(user: User) {
-        let data = ("connected_\(deviceId)_\(self.displayName)").dataUsingEncoding(NSUTF8StringEncoding) ?? NSData()
+        let data = ("\(user.mode.rawValue)connected_\(deviceId)_\(self.displayName)").dataUsingEncoding(NSUTF8StringEncoding) ?? NSData()
         user.link.sendFrame(data)
     }
     func stopTransport() {
@@ -300,7 +334,7 @@ public class NetworkManager: NSObject, UDTransportDelegate {
     // MARK: Public Functions
     func sendMessageToPeers(text: String) {
         let data = text.dataUsingEncoding(NSUTF8StringEncoding) ?? NSData()
-        if mode == .Client || mode == .Host {
+        if mode == .Browser || mode == .Advertiser {
             if usersInRangeExist() {
                 if connectedPeers.value != nil {
                     for peer in connectedPeers.value! {
@@ -314,7 +348,7 @@ public class NetworkManager: NSObject, UDTransportDelegate {
     }
     func askToConnectToPeer(user: User) {
         dispatch_async(dispatch_get_global_queue(qos_class_main(), 0), {
-            let data = ("connectionrequest_\(self.deviceId)_\(self.displayName))").dataUsingEncoding(NSUTF8StringEncoding) ?? NSData()
+            let data = ("\(self.mode.rawValue)connectionrequest_\(self.deviceId)_\(self.displayName))").dataUsingEncoding(NSUTF8StringEncoding) ?? NSData()
             user.link.sendFrame(data)
         })
     }
@@ -325,7 +359,7 @@ public class NetworkManager: NSObject, UDTransportDelegate {
             for i in 0..<usersInRange.value!.count {
                 usersInRange.value![i].link.sendFrame(data)
                 let user = usersInRange.value![i]
-                if mode == .Client && user.mode == .Host {
+                if mode == .Browser && user.mode == .Advertiser {
                     let updatedUser = User(userId: user.id, userlink: user.link , userMode: user.mode, isConnected: false, inName: user.displayName)
                     usersInRange.value?.removeAtIndex(i)
                     usersInRange.value?.append(updatedUser)
@@ -333,20 +367,14 @@ public class NetworkManager: NSObject, UDTransportDelegate {
             }
         }
     }
-    func bootUser(user: User) {
-        let message = "booted_\(self.deviceId)_\(self.displayName))"
-        let data = message.dataUsingEncoding(NSUTF8StringEncoding) ?? NSData()
-        user.link.sendFrame(data)
-        removeUser(user)
-    }
     private func usersInRangeExist() -> Bool {
         return usersInRange.value != nil
     }
     private func getUserIDFromMessage(message: String) -> String {
         let filteredMessage = message
-            .stringByReplacingOccurrencesOfString("booted_", withString: "")
-            .stringByReplacingOccurrencesOfString("host_", withString: "")
-            .stringByReplacingOccurrencesOfString("client_", withString: "")
+            .stringByReplacingOccurrencesOfString("advertiser", withString: "")
+            .stringByReplacingOccurrencesOfString("advertiser_", withString: "")
+            .stringByReplacingOccurrencesOfString("browser_", withString: "")
             .stringByReplacingOccurrencesOfString("connectionrequest_", withString: "")
             .stringByReplacingOccurrencesOfString("allow_", withString: "")
             .stringByReplacingOccurrencesOfString("current", withString: "")
@@ -366,9 +394,9 @@ public class NetworkManager: NSObject, UDTransportDelegate {
     }
     private func getDisplayNameFromMessage(message: String) -> String {
         let filteredMessage = message
-            .stringByReplacingOccurrencesOfString("booted_", withString: "")
-            .stringByReplacingOccurrencesOfString("host_", withString: "")
-            .stringByReplacingOccurrencesOfString("client_", withString: "")
+            .stringByReplacingOccurrencesOfString("advertiser", withString: "")
+            .stringByReplacingOccurrencesOfString("advertiser_", withString: "")
+            .stringByReplacingOccurrencesOfString("browser_", withString: "")
             .stringByReplacingOccurrencesOfString("connectionrequest_", withString: "")
             .stringByReplacingOccurrencesOfString("allow_", withString: "")
             .stringByReplacingOccurrencesOfString("current", withString: "")

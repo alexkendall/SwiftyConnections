@@ -34,18 +34,11 @@ class PeerTable: UITableView, UITableViewDataSource, UITableViewDelegate {
     // MARK: Data Source
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
-            if NetworkManager.sharedManager.mode == .Host {
-                // boot user
-                NetworkManager.sharedManager.bootUser(users.value![indexPath.row])
-            }
-            if NetworkManager.sharedManager.mode == .Client {
-                // disconnect
-                NetworkManager.sharedManager.disconnectFromPeers()
-            }
+            NetworkManager.sharedManager.disconnectFromPeers()
         }
     }
     func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
-        if NetworkManager.sharedManager.mode == .Client {
+        if NetworkManager.sharedManager.mode == .Browser {
             return "DISCONNECT"
         } else {
             return "BOOT USER"

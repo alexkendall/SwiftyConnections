@@ -3,7 +3,7 @@ import UIKit
 
 class PeerController: UITableViewController {
     static var sharedPeerController = PeerController(style: .Plain)
-    let numRows = 5
+    let numRows = 6
     let peerTableCellId = "PeerTableCell"
     let multipeerCellId = "MultipeerCell"
     let headerCellId = "headerCell"
@@ -70,10 +70,22 @@ class PeerController: UITableViewController {
                 setCellUnselected(cell)
             }
             return cell
-        } else {
+        }
+        else if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCellWithIdentifier(multipeerCellId, forIndexPath: indexPath) as? MultipeerCell ?? MultipeerCell()
             cell.typeLabel.text = "CLIENT"
             cell.icon.setGMDIcon(GMDType.GMDSpeakerPhone, forState: .Normal)
+            cell.backgroundColor = cellBackgroundColor
+            if indexPath.row == selectedIndex {
+                selectCellSelected(cell)
+            } else {
+                setCellUnselected(cell)
+            }
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(multipeerCellId, forIndexPath: indexPath) as? MultipeerCell ?? MultipeerCell()
+            cell.typeLabel.text = "ADVERTISE/BROWSE"
+            cell.icon.setGMDIcon(GMDType.GMDImportExport, forState: .Normal)
             cell.backgroundColor = cellBackgroundColor
             if indexPath.row == selectedIndex {
                 selectCellSelected(cell)
@@ -101,8 +113,11 @@ class PeerController: UITableViewController {
             NetworkManager.sharedManager.advertise()
             print("Host Mode Activated")
         } else if indexPath.row == 4 {
-            NetworkManager.sharedManager.brwose()
+            NetworkManager.sharedManager.browse()
             print("Client Mode Activated ")
+        } else if indexPath.row == 5 {
+            NetworkManager.sharedManager.advertise()
+            NetworkManager.sharedManager.browse()
         }
         selectedIndex = indexPath.row
         tableView.reloadData()
@@ -114,7 +129,7 @@ class PeerController: UITableViewController {
         else if indexPath.row == 1 {
             return CGFloat(NetworkManager.sharedManager.connectedPeers.value?.count ?? 0) * 75.0
         } else {
-            return 150.0
+            return 120.0
         }
     }
 }

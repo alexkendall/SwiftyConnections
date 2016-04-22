@@ -18,16 +18,16 @@
                         <rect key="frame" x="18" y="8" width="328" height="110"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4tj-w4-OLi">
-                                <rect key="frame" x="0.0" y="0.0" width="328" height="48"/>
+                                <rect key="frame" x="0.0" y="0.0" width="328" height="55"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PeerName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T6t-Id-2yC">
-                                        <rect key="frame" x="0.0" y="0.0" width="278" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="278" height="55"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ylR-Dd-Owf">
-                                        <rect key="frame" x="278" y="0.0" width="50" height="48"/>
+                                        <rect key="frame" x="278" y="0.0" width="50" height="55"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="50" id="cut-vV-oWg"/>
                                         </constraints>
@@ -36,13 +36,30 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USERID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPu-Qo-X77">
-                                <rect key="frame" x="0.0" y="48" width="328" height="62"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yef-8l-DJA">
+                                <rect key="frame" x="0.0" y="55" width="328" height="55"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USERID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPu-Qo-X77">
+                                        <rect key="frame" x="0.0" y="0.0" width="164" height="55"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MODE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X7h-kg-0tg">
+                                        <rect key="frame" x="164" y="0.0" width="164" height="55"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="X7h-kg-0tg" firstAttribute="width" secondItem="TPu-Qo-X77" secondAttribute="width" id="Emx-RA-PZY"/>
+                                </constraints>
+                            </stackView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="Yef-8l-DJA" firstAttribute="height" secondItem="4tj-w4-OLi" secondAttribute="height" id="Mjw-Yd-OFE"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>
@@ -54,6 +71,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="connectButton" destination="ylR-Dd-Owf" id="VoO-w8-Ys1"/>
+                <outlet property="modeLabel" destination="X7h-kg-0tg" id="k5m-as-29V"/>
                 <outlet property="peerLabel" destination="T6t-Id-2yC" id="I3H-rG-tUS"/>
                 <outlet property="userIDLabel" destination="TPu-Qo-X77" id="LF8-YM-tCU"/>
             </connections>
