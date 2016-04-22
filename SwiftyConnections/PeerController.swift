@@ -42,6 +42,7 @@ class PeerController: UITableViewController {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(headerCellId, forIndexPath: indexPath) as? HeaderCell ?? HeaderCell()
             cell.headerLabel.text = "Connections"
+            cell.backgroundColor = .blackColor()
             return cell
         }
         if indexPath.row == 1 {
@@ -128,6 +129,10 @@ extension PeerController: NetworkManagerDelegate {
     func discoveredUser(user: User) {
         print("discovered user")
         user.printInfo()
+    }
+    func didRecieveMessage(message: String) {
+        ChatController.sharedChatController.inbox.value.append(message)
+        print("Recieved message: \(message)")
     }
     func recievedConnectionRequestFromUser(user: User, autheticateHandler: (user: User, autheticate: Bool) -> Void) {
         print("recieved connection request from user \(user)")

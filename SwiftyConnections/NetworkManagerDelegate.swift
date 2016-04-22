@@ -6,4 +6,5 @@ public protocol NetworkManagerDelegate {
     func didDisconnectFromUser(user: User)
     func discoveredUser(user: User)
     func recievedConnectionRequestFromUser(user: User, autheticateHandler: (user: User, autheticate: Bool)->Void)
+    func didRecieveMessage(message: String)
 }

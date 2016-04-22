@@ -5,13 +5,15 @@ let tabController = UITabBarController()
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         window?.rootViewController = tabController
         let connectTab = UITabBarItem(title: "Connect", image: UIImage(named: "connect"), tag: 0)
+        let messageTab =  UITabBarItem(title: "Messages", image: UIImage(named: "message"), tag: 0)
         tabController.viewControllers = [PeerController.sharedPeerController, ChatController.sharedChatController]
         PeerController.sharedPeerController.tabBarItem = connectTab
+        ChatController.sharedChatController.tabBarItem = messageTab
         return true
     }
 

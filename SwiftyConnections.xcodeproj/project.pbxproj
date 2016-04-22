@@ -10,7 +10,9 @@
 		51BDD5D437D9DD6AE3AB1355 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D07BB22893C2A2C876D3696A /* Pods.framework */; };
 		FA06CC441CC920C100D99071 /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA06CC421CC920C100D99071 /* HeaderCell.swift */; };
 		FA06CC451CC920C100D99071 /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA06CC431CC920C100D99071 /* HeaderCell.xib */; };
-		FA06CC471CC9239500D99071 /* connections.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA06CC461CC9239500D99071 /* connections.jpg */; };
+		FA06CC491CC947DC00D99071 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA06CC481CC947DC00D99071 /* MessageCell.swift */; };
+		FA06CC4B1CC9480B00D99071 /* MessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA06CC4A1CC9480B00D99071 /* MessageCell.xib */; };
+		FA06CC4D1CC9610E00D99071 /* JSQVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA06CC4C1CC9610E00D99071 /* JSQVC.swift */; };
 		FA1D1E8A1CC7B500006ED3EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1D1E891CC7B500006ED3EF /* AppDelegate.swift */; };
 		FA1D1E8F1CC7B500006ED3EF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA1D1E8D1CC7B500006ED3EF /* Main.storyboard */; };
 		FA1D1E911CC7B500006ED3EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA1D1E901CC7B500006ED3EF /* Assets.xcassets */; };
@@ -149,7 +151,9 @@
 		D4E1700D65B185B034EF57B3 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FA06CC421CC920C100D99071 /* HeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		FA06CC431CC920C100D99071 /* HeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
-		FA06CC461CC9239500D99071 /* connections.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = connections.jpg; sourceTree = "<group>"; };
+		FA06CC481CC947DC00D99071 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		FA06CC4A1CC9480B00D99071 /* MessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageCell.xib; sourceTree = "<group>"; };
+		FA06CC4C1CC9610E00D99071 /* JSQVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSQVC.swift; sourceTree = "<group>"; };
 		FA1D1E861CC7B500006ED3EF /* SwiftyConnections.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftyConnections.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA1D1E891CC7B500006ED3EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA1D1E8E1CC7B500006ED3EF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -291,7 +295,6 @@
 				FA1D21231CC7CDB2006ED3EF /* SwiftyConnectivity */,
 				FA1D21311CC7CDB3006ED3EF /* SwiftyConnectivityTests */,
 				FA1D21471CC7CE62006ED3EF /* SwiftyConnectivity */,
-				FA1D21551CC7CE62006ED3EF /* SwiftyConnectivityTests */,
 				FA5C4D931CC809F90026DB7E /* SwiftyConnectivity */,
 				FA5C4DA11CC809F90026DB7E /* SwiftyConnectivityTests */,
 				FA1D1E871CC7B500006ED3EF /* Products */,
@@ -318,7 +321,6 @@
 			isa = PBXGroup;
 			children = (
 				FA1D1E891CC7B500006ED3EF /* AppDelegate.swift */,
-				FA06CC461CC9239500D99071 /* connections.jpg */,
 				FA5C4DB61CC80FA80026DB7E /* NetworkManager */,
 				FA1D1E8D1CC7B500006ED3EF /* Main.storyboard */,
 				FA1D1E901CC7B500006ED3EF /* Assets.xcassets */,
@@ -365,6 +367,7 @@
 		FA1D21311CC7CDB3006ED3EF /* SwiftyConnectivityTests */ = {
 			isa = PBXGroup;
 			children = (
+				FA1D21551CC7CE62006ED3EF /* SwiftyConnectivityTests */,
 				FA1D21321CC7CDB3006ED3EF /* SwiftyConnectivityTests.swift */,
 				FA1D21341CC7CDB3006ED3EF /* Info.plist */,
 			);
@@ -386,7 +389,7 @@
 				FA1D21561CC7CE62006ED3EF /* SwiftyConnectivityTests.swift */,
 				FA1D21581CC7CE62006ED3EF /* Info.plist */,
 			);
-			path = SwiftyConnectivityTests;
+			name = SwiftyConnectivityTests;
 			sourceTree = "<group>";
 		};
 		FA1D21AC1CC7D17B006ED3EF /* MaterialIcons */ = {
@@ -409,6 +412,8 @@
 				FA1D21BD1CC7D2D5006ED3EF /* PeerCell.xib */,
 				FA5C4D891CC7F5050026DB7E /* MultipeerCell.swift */,
 				FA5C4D8B1CC7F5750026DB7E /* MultipeerCell.xib */,
+				FA06CC481CC947DC00D99071 /* MessageCell.swift */,
+				FA06CC4A1CC9480B00D99071 /* MessageCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -463,6 +468,7 @@
 			children = (
 				FA1D21C01CC7D3B2006ED3EF /* PeerController.swift */,
 				FA5C4DD01CC8207B0026DB7E /* ChatController.swift */,
+				FA06CC4C1CC9610E00D99071 /* JSQVC.swift */,
 			);
 			name = ViewControllers;
 			path = ..;
@@ -756,9 +762,9 @@
 			files = (
 				FA06CC451CC920C100D99071 /* HeaderCell.xib in Resources */,
 				FA1D21B01CC7D18B006ED3EF /* GMDIcons.ttf in Resources */,
-				FA06CC471CC9239500D99071 /* connections.jpg in Resources */,
 				FA1D21B51CC7D26A006ED3EF /* PeerTableCell.xib in Resources */,
 				FA5C4D8C1CC7F5750026DB7E /* MultipeerCell.xib in Resources */,
+				FA06CC4B1CC9480B00D99071 /* MessageCell.xib in Resources */,
 				FA1D1E941CC7B500006ED3EF /* LaunchScreen.storyboard in Resources */,
 				FA1D1E911CC7B500006ED3EF /* Assets.xcassets in Resources */,
 				FA1D1E8F1CC7B500006ED3EF /* Main.storyboard in Resources */,
@@ -874,8 +880,10 @@
 				FA5C4DE91CC821BF0026DB7E /* RAMItemAnimationProtocol.swift in Sources */,
 				FA1D21AF1CC7D18B006ED3EF /* GMDIcon.swift in Sources */,
 				FA1D21BE1CC7D2D5006ED3EF /* PeerCell.swift in Sources */,
+				FA06CC491CC947DC00D99071 /* MessageCell.swift in Sources */,
 				FA5C4DD11CC8207B0026DB7E /* ChatController.swift in Sources */,
 				FA1D21BB1CC7D297006ED3EF /* Utility.swift in Sources */,
+				FA06CC4D1CC9610E00D99071 /* JSQVC.swift in Sources */,
 				FA1D210E1CC7C997006ED3EF /* NetworkManager.swift in Sources */,
 				FA1D1E8A1CC7B500006ED3EF /* AppDelegate.swift in Sources */,
 				FA5C4DE31CC821BF0026DB7E /* RAMFrameItemAnimation.swift in Sources */,

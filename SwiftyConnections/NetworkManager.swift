@@ -157,7 +157,7 @@ public class NetworkManager: NSObject, UDTransportDelegate {
                 let user = User(userId: userId, userlink: link, userMode: NetworkMode.Client, isConnected: true, inName: name)
                 self.removeUser(user)
             } else {
-                // handle message
+                delegate.didRecieveMessage(message)
             }
         }
     }
