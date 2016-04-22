@@ -22,7 +22,6 @@ public class NetworkManager: NSObject, UDTransportDelegate {
     static var sharedManager = NetworkManager(inMode: .Offline)
     public var delegate: NetworkManagerDelegate!
     required public init(inMode: NetworkMode) {
-        //print("THIS DEVICE ID: \(deviceId)")
         super.init()
         mode = inMode
         usersInRange.signal
@@ -45,9 +44,9 @@ public class NetworkManager: NSObject, UDTransportDelegate {
                 }
         }
         if mode == .Client {
-            searchAsClient()
+            brwose()
         } else if mode == .Host {
-            advertiseAsHost()
+            advertise()
         } else {
             enterSingleUser()
         }
@@ -61,7 +60,8 @@ public class NetworkManager: NSObject, UDTransportDelegate {
                 }
             })
     }
-    func advertiseAsHost() {
+    
+    func advertise() {
         disconnectFromPeers()
         usersInRange.value = []
         connectedPeers.value = []
@@ -69,7 +69,7 @@ public class NetworkManager: NSObject, UDTransportDelegate {
         broadcastType()
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(NetworkManager.broadcastType), userInfo: nil, repeats: true)  // start advertising
     }
-    func searchAsClient() {
+    func brwose() {
         disconnectFromPeers()
         usersInRange.value = []
         connectedPeers.value = []

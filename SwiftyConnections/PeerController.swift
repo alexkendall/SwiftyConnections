@@ -98,10 +98,10 @@ class PeerController: UITableViewController {
             NetworkManager.sharedManager.enterSingleUser()
             print("Single User Mode Activated")
         } else if indexPath.row == 3 {
-            NetworkManager.sharedManager.advertiseAsHost()
+            NetworkManager.sharedManager.advertise()
             print("Host Mode Activated")
         } else if indexPath.row == 4 {
-            NetworkManager.sharedManager.searchAsClient()
+            NetworkManager.sharedManager.brwose()
             print("Client Mode Activated ")
         }
         selectedIndex = indexPath.row
