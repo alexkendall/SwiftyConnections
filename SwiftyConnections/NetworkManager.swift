@@ -95,7 +95,7 @@ public class NetworkManager: NSObject, UDTransportDelegate {
     }
     private func advertiseBrowse() {
         timer.invalidate()
-        print("advertise and browse")
+        print("advertise and browser")
         mode = .AdvertiserBrowser
         broadcastType()
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(NetworkManager.broadcastType), userInfo: nil, repeats: true)
@@ -127,10 +127,10 @@ public class NetworkManager: NSObject, UDTransportDelegate {
     }
     // MARK: Transport Delegate
     public func transport(transport: UDTransport!, link: UDLink!, didReceiveFrame frameData: NSData!) {
-        if mode == .Browser || mode == .Advertiser {
+        if mode != .Offline {
             let message = String(data: frameData, encoding: NSUTF8StringEncoding) ?? ""
             lastIncommingMessage.value = message
-            if message.containsString("advertiserbrowser") {
+            if message.containsString("duo_") {
                 let id = getUserIDFromMessage(message)
                 let displayName = getDisplayNameFromMessage(message)
                 addUser(User(userId: id, userlink: link, userMode: .AdvertiserBrowser, isConnected: false, inName: displayName))
@@ -158,7 +158,7 @@ public class NetworkManager: NSObject, UDTransportDelegate {
             } else if message.containsString("allow_") {
                 let userId = getUserIDFromMessage(message)
                 let name = getDisplayNameFromMessage(message)
-                if message.containsString("advetiserbrowser") {
+                if message.containsString("duo") {
                     mode = .AdvertiserBrowser
                 } else {
                     mode = .Browser
@@ -173,7 +173,7 @@ public class NetworkManager: NSObject, UDTransportDelegate {
             } else if message.containsString("connected_") {
                 let userId = getUserIDFromMessage(message)
                 let name = getDisplayNameFromMessage(message)
-                if message.containsString("advetiserbrowser") {
+                if message.containsString("duo") {
                     mode = .AdvertiserBrowser
                 } else {
                     mode = .Browser
@@ -226,16 +226,15 @@ public class NetworkManager: NSObject, UDTransportDelegate {
         })
     }
     private func removeUser(user: User) {
-                for i in 0..<connectedPeers.value.count {
-                    if user.id == connectedPeers.value[i].id {
-                        connectedPeers.value.removeAtIndex(i)
-                    }
-                for i in 0..<usersInRange.value.count {
-                    if user.id == usersInRange.value[i].id {
-                        usersInRange.value.removeAtIndex(i)
-                    }
-                }
-            
+        for i in 0..<connectedPeers.value.count {
+            if user.id == connectedPeers.value[i].id {
+                connectedPeers.value.removeAtIndex(i)
+            }
+        }
+        for i in 0..<usersInRange.value.count {
+            if user.id == usersInRange.value[i].id {
+                usersInRange.value.removeAtIndex(i)
+            }
         }
     }
     private func addUser(user: User) {
@@ -247,14 +246,14 @@ public class NetworkManager: NSObject, UDTransportDelegate {
                 if user.mode != tempUser.mode || user.connected != tempUser.connected {
                     usersInRange.value.removeAtIndex(i)
                     usersInRange.value.append(user)
-                    return
                 }
+                return
             }
-            print("adding user")
-            self.usersInRange.value.append(user)
-            if self.delegate != nil {
-                self.delegate.discoveredUser(user)
-            }
+        }
+        print("adding user")
+        self.usersInRange.value.append(user)
+        if self.delegate != nil {
+            self.delegate.discoveredUser(user)
         }
     }
     private func removeLink(link: UDLink) {
@@ -335,7 +334,7 @@ public class NetworkManager: NSObject, UDTransportDelegate {
     }
     private func getUserIDFromMessage(message: String) -> String {
         let filteredMessage = message
-            .stringByReplacingOccurrencesOfString("advertiser", withString: "")
+            .stringByReplacingOccurrencesOfString("duo_", withString: "")
             .stringByReplacingOccurrencesOfString("advertiser_", withString: "")
             .stringByReplacingOccurrencesOfString("browser_", withString: "")
             .stringByReplacingOccurrencesOfString("connectionrequest_", withString: "")
@@ -351,13 +350,12 @@ public class NetworkManager: NSObject, UDTransportDelegate {
             }
             index += 1
         }
-        // use index to split message
-        //print("USER ID: \(filteredMessage.substringToIndex(filteredMessage.startIndex.advancedBy(index)))")
+        // use index
         return filteredMessage.substringToIndex(filteredMessage.startIndex.advancedBy(index))
     }
     private func getDisplayNameFromMessage(message: String) -> String {
         let filteredMessage = message
-            .stringByReplacingOccurrencesOfString("advertiser", withString: "")
+            .stringByReplacingOccurrencesOfString("duo_", withString: "")
             .stringByReplacingOccurrencesOfString("advertiser_", withString: "")
             .stringByReplacingOccurrencesOfString("browser_", withString: "")
             .stringByReplacingOccurrencesOfString("connectionrequest_", withString: "")

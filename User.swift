@@ -3,9 +3,9 @@ import Foundation
 import Underdark
 
 public enum NetworkMode: String {
-    case Advertiser = "adveriser"
+    case Advertiser = "advertiser"
     case Browser = "browser"
-    case AdvertiserBrowser = "advertiserbrowser"
+    case AdvertiserBrowser = "duo"
     case Offline = "offline"
 }
 

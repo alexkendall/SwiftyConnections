@@ -108,13 +108,10 @@ class PeerController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == 2 {
             NetworkManager.sharedManager.enterSingleUser()
-            print("Single User Mode Activated")
         } else if indexPath.row == 3 {
             NetworkManager.sharedManager.advertise()
-            print("Host Mode Activated")
         } else if indexPath.row == 4 {
             NetworkManager.sharedManager.browse()
-            print("Client Mode Activated ")
         } else if indexPath.row == 5 {
             NetworkManager.sharedManager.advertise()
             NetworkManager.sharedManager.browse()
