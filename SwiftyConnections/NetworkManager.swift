@@ -95,10 +95,25 @@ public class NetworkManager: NSObject, UDTransportDelegate {
     }
     private func advertiseBrowse() {
         timer.invalidate()
-        print("advertise and browser")
         mode = .AdvertiserBrowser
         broadcastType()
         timer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(NetworkManager.broadcastType), userInfo: nil, repeats: true)
+    }
+    func stopBrowsing() {
+        isBrowsing.value = false
+        if isAdvertising.value {
+            advertise()
+        } else {
+            enterSingleUser()
+        }
+    }
+    func stopAdvertising() {
+        isAdvertising.value = false
+        if isBrowsing.value {
+            browse()
+        } else {
+            enterSingleUser()
+        }
     }
     public func enterSingleUser() {
         disconnectFromPeers()

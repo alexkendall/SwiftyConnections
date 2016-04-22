@@ -110,8 +110,10 @@ class PeerController: UITableViewController {
             NetworkManager.sharedManager.enterSingleUser()
         } else if indexPath.row == 3 {
             NetworkManager.sharedManager.advertise()
+            NetworkManager.sharedManager.stopBrowsing()
         } else if indexPath.row == 4 {
             NetworkManager.sharedManager.browse()
+            NetworkManager.sharedManager.stopAdvertising()
         } else if indexPath.row == 5 {
             NetworkManager.sharedManager.advertise()
             NetworkManager.sharedManager.browse()
