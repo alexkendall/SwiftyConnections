@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftyConnections/NetworkManager.swift"
-            timestampString = "483029689.907427"
+            timestampString = "483031864.00582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "initTransport()"
             landmarkType = "5">
          </BreakpointContent>

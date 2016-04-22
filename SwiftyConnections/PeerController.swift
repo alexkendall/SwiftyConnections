@@ -127,7 +127,7 @@ class PeerController: UITableViewController {
             return 50.0
         }
         else if indexPath.row == 1 {
-            return CGFloat(NetworkManager.sharedManager.connectedPeers.value?.count ?? 0) * 75.0
+            return CGFloat(NetworkManager.sharedManager.connectedPeers.value.count ?? 0) * 75.0
         } else {
             return 120.0
         }

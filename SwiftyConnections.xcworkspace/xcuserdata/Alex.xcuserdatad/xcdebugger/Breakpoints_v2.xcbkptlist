@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftyConnections/NetworkManager.swift"
-            timestampString = "483030116.707102"
+            timestampString = "483031864.00582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "transport(_:link:didReceiveFrame:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftyConnections/NetworkManager.swift"
-            timestampString = "483030116.707102"
+            timestampString = "483031864.00582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "transport(_:link:didReceiveFrame:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SwiftyConnections/NetworkManager.swift"
-            timestampString = "483030116.707102"
+            timestampString = "483031864.00582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "transport(_:linkConnected:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -207,6 +207,102 @@
             endingLineNumber = "112"
             landmarkName = "tableView(_:didSelectRowAtIndexPath:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwiftyConnections/NetworkManager.swift"
+            timestampString = "483031864.00582"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "131"
+            endingLineNumber = "131"
+            landmarkName = "transport(_:link:didReceiveFrame:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftyConnections.NetworkManager.transport (Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UDTransport&gt;, link : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UDLink&gt;, didReceiveFrame : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.NSData&gt;) -&gt; ()"
+                  moduleName = "SwiftyConnections"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Alex/Desktop/SwiftyConnections/SwiftyConnections/NetworkManager.swift"
+                  timestampString = "483031002.072868"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "528">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftyConnectivity.NetworkManager.transport (Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UDTransport&gt;, link : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UDLink&gt;, didReceiveFrame : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.NSData&gt;) -&gt; ()"
+                  moduleName = "SwiftyConnectivity"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Alex/Desktop/SwiftyConnections/SwiftyConnections/NetworkManager.swift"
+                  timestampString = "483031002.07302"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "528">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwiftyConnections/NetworkManager.swift"
+            timestampString = "483031864.00582"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "transport(_:link:didReceiveFrame:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftyConnections.NetworkManager.transport (Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UDTransport&gt;, link : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UDLink&gt;, didReceiveFrame : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.NSData&gt;) -&gt; ()"
+                  moduleName = "SwiftyConnections"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Alex/Desktop/SwiftyConnections/SwiftyConnections/NetworkManager.swift"
+                  timestampString = "483031025.508417"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "936">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SwiftyConnectivity.NetworkManager.transport (Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UDTransport&gt;, link : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UDLink&gt;, didReceiveFrame : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.NSData&gt;) -&gt; ()"
+                  moduleName = "SwiftyConnectivity"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Alex/Desktop/SwiftyConnections/SwiftyConnections/NetworkManager.swift"
+                  timestampString = "483031025.50858"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "132"
+                  endingLineNumber = "132"
+                  offsetFromSymbolStart = "936">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
